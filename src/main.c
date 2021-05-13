@@ -11,6 +11,15 @@ int main()
     char terranFleet[buffSize];
     char protossFleet[buffSize];
     scanf("%s %s", terranFleet, protossFleet);
+    
+    if (terranFleet==NULL){
+        perror("invalid terranFleet entry");
+        exit(1);
+    }
+    if (protossFleet==NULL){
+        perror("invalid protossFleet entry");
+        exit(1);
+    }
 
     BattleField battleField;
     generateTerranFleet(&battleField, terranFleet);
