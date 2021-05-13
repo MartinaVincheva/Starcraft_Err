@@ -34,17 +34,6 @@ void generateTerranFleet(BattleField *battleField, const char *terranFleetStr)
     }
 }
 
-void testCreatePhoenixShip(void)
-{
-    pShip = createPhoenixShip(-1);
-    if ((NULL != pShip) || (errno != INDEX_OUT_OF_BOUNDS)) {
-        printf("Function createPhoenixShip accepts negative index!\n");
-    }
-    createPhoenixShip(0);
-    createPhoenixShip(MAX_FLEET_SIZE);
-    createPhoenixShip(MAX_FLEET_SIZE + 1);
-}
-
 void generateProtossFleet(BattleField *battleField, const char *protossFleetStr)
 {
     int protosFleetSize = strlen(protossFleetStr);
@@ -60,10 +49,7 @@ void generateProtossFleet(BattleField *battleField, const char *protossFleetStr)
         case 'p':
         case 'P':
         {
-            if (NULL == (myShip = createPhoenixShip(idx)))
-            {
-                perror(error2string(errno));
-            }
+            myShip = createPhoenixShip(idx);
             break;
         }
         case 'c':

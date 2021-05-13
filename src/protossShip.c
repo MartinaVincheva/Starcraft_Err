@@ -3,6 +3,8 @@
 
 #include "protossShip.h"
 
+MAX_FLEET_SIZE = 100;
+
 static void printProtossShip(ship *myShip)
 {
     protossShip *pShip = (protossShip *)myShip;
@@ -55,13 +57,6 @@ static char *phoenixTypeToString(void)
     return ("Phoenix");
 }
 
-char * error2string(int errno) {
-    switch errno {
-        case INDEX_OUT_OF_BOUNDS:
-            return("Can't create PhoenixShip!");
-        break;
-    }
-}
 
 ship *createPhoenixShip(int index)
 {
