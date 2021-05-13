@@ -98,7 +98,7 @@ static char *phoenixTypeToString(void)
 
 ship *createPhoenixShip(int index)
 {
-    if (!((index >= 0) && (index < MAX_FLEET_SIZE)))
+    if (!((index > 0) && (index < MAX_FLEET_SIZE)))
     {
         perror("Index is out of bounds!\n");
         return NULL;
