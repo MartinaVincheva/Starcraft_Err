@@ -40,4 +40,6 @@ enum BattleCruserDefines
     YAMATO_CANNON_LOADING_TURNS = 4
 };
 
+MAX_FLEET_SIZE = 100;
+
 #endif /* DEFINES_H_ */
