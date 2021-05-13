@@ -4,6 +4,11 @@
 
 void vectorInit(Vector *vec, size_t initialCapacity)
 {
+    if (NULL == vec)
+    {
+        perror("Function vectorInit pointer is null\n");
+        return NULL;
+    }
     vec->capacity = initialCapacity;
     vec->size = 0;
     vec->items = malloc(sizeof(void *) * vec->capacity);
@@ -11,16 +16,34 @@ void vectorInit(Vector *vec, size_t initialCapacity)
 
 size_t vectorGetSize(Vector *v)
 {
+    if (NULL == v)
+    {
+        perror("Function vectorGetSize pointer is null\n");
+        return NULL;
+    }
+
     return v->size;
 }
 
 bool vectorIsEmpty(Vector *vec)
 {
+    if (NULL == vec)
+    {
+        perror("Function vectorIsEmpty pointer is null\n");
+        return NULL;
+    }
+
     return vec->size == 0;
 }
 
 void vectorResize(Vector *vec, size_t capacity)
 {
+    if (NULL == vec)
+    {
+        perror("Function vectorResize pointer is null\n");
+        return NULL;
+    }
+
     void **items = realloc(vec->items, sizeof(void *) * capacity);
     if (items)
     {
@@ -35,6 +58,12 @@ void vectorResize(Vector *vec, size_t capacity)
 
 void vectorPush(Vector *vec, void *item)
 {
+    if (NULL == vec)
+    {
+        perror("Function vectorPush pointer is null\n");
+        return NULL;
+    }
+
     if (vec->capacity == vec->size)
     {
         vectorResize(vec, vec->capacity * 2);
@@ -45,6 +74,12 @@ void vectorPush(Vector *vec, void *item)
 
 void vectorSet(Vector *vec, size_t idx, void *item)
 {
+    if (NULL == vec)
+    {
+        perror("Function vectorSet pointer is null\n");
+        return NULL;
+    }
+
     if (idx < vec->size)
     {
         vec->items[idx] = item;
@@ -53,6 +88,12 @@ void vectorSet(Vector *vec, size_t idx, void *item)
 
 void *vectorGet(Vector *vec, size_t idx)
 {
+    if (NULL == vec)
+    {
+        perror("Function vectorGet pointer is null\n");
+        return NULL;
+    }
+
     if (idx < vec->size)
     {
         return vec->items[idx];
@@ -62,6 +103,12 @@ void *vectorGet(Vector *vec, size_t idx)
 
 void *vectorBack(Vector *vec)
 {
+    if (NULL == vec)
+    {
+        perror("Function vectorBack pointer is null\n");
+        return NULL;
+    }
+
     if (0 == vec->size)
     {
         return NULL;
@@ -72,6 +119,12 @@ void *vectorBack(Vector *vec)
 
 void vectorDelete(Vector *vec, size_t idx)
 {
+    if (NULL == vec)
+    {
+        perror("Function vectorDelete pointer is null\n");
+        return NULL;
+    }
+
     if (idx >= vec->size)
     {
         return;
@@ -90,6 +143,12 @@ void vectorDelete(Vector *vec, size_t idx)
 
 void vectorPop(Vector *vec)
 {
+    if (NULL == vec)
+    {
+        perror("Function vectorPop pointer is null\n");
+        return NULL;
+    }
+
     if (vec->size == 0)
     {
         return;
@@ -100,6 +159,12 @@ void vectorPop(Vector *vec)
 
 void vectorFree(Vector *vec)
 {
+    if (NULL == vec)
+    {
+        perror("Function vectorFree pointer is null\n");
+        return NULL;
+    }
+
     if (vec->items != NULL)
     {
         free(vec->items);
