@@ -3,21 +3,22 @@
 
 #include "protossShip.h"
 
-MAX_FLEET_SIZE = 100;
+int MAX_FLEET_SIZE = 100;
 
 static void printProtossShip(ship *myShip)
 {
     if (NULL == myShip)
     {
         perror("Function printProtossShip pointer is null\n");
-        return NULL;
+        exit(-1);
     }
     protossShip *pShip = (protossShip *)myShip;
 
     if (!pShip)
     {
         perror("Failed to cast !\n");
-        return NULL;
+        exit(-1);
+        ;
     }
 
     printf("Last Protoss AirShip with ID: %d has %d health and %d shield left\n", pShip->item.index, pShip->item.health, pShip->shield);
@@ -28,7 +29,7 @@ static bool protossUnderAttack(ship *attacker, ship *attacked)
     if (NULL == attacker || NULL == attacked)
     {
         perror("Function protossUnderAttack pointer is null\n");
-        return NULL;
+        exit(-1);
     }
     int attack_strenght = attacker->attackStrength(attacker, attacked);
     protossShip *myShip = (protossShip *)attacked;
@@ -36,7 +37,7 @@ static bool protossUnderAttack(ship *attacker, ship *attacked)
     if (!myShip)
     {
         perror("Failed to cast !\n");
-        return NULL;
+        exit(-1);
     }
 
     if (attack_strenght <= myShip->shield)
@@ -57,7 +58,7 @@ static void recoverPhoenixShield(protossShip *myShip)
     if (NULL == myShip)
     {
         perror("Function printProtossShip pointer is null\n");
-        return NULL;
+        exit(-1);
     }
 
     myShip->shield += PHOENIX_SHIELD_REGENERATE_RATE;
@@ -72,7 +73,7 @@ static int phoenixAttacksCount(protossShip *myShip)
     if (NULL == myShip)
     {
         perror("Function printProtossShip pointer is null\n");
-        return NULL;
+        exit(-1);
     }
     (void)myShip;
     return (1);
@@ -83,7 +84,7 @@ static int phoenixAttackStrength(ship *attacker, ship *attacked)
     if (NULL == attacker || NULL == attacked)
     {
         perror("Function protossUnderAttack pointer is null\n");
-        return NULL;
+        exit(-1);
     }
 
     (void)attacker;
@@ -101,14 +102,14 @@ ship *createPhoenixShip(int index)
     if (!((index > 0) && (index < MAX_FLEET_SIZE)))
     {
         perror("Index is out of bounds!\n");
-        return NULL;
+        exit(-1);
     }
     protossShip *s = (protossShip *)malloc(sizeof(protossShip));
 
     if (!s)
     {
         perror("Unsuccessful memory allocation for protossShip\n");
-        return NULL;
+        exit(-1);
     }
 
     s->item.type = PHOENIX;
@@ -129,7 +130,7 @@ static void recoverCarrierShield(protossShip *myShip)
     if (NULL == myShip)
     {
         perror("Function recoverCarrierShield pointer is null\n");
-        return NULL;
+        exit(-1);
     }
     myShip->shield += CARRIER_SHIELD_REGENERATE_RATE;
     if (myShip->shield > CARRIER_SHIELD)
@@ -143,7 +144,7 @@ static int carrierAttacksCount(protossShip *myShip)
     if (NULL == myShip)
     {
         perror("Function carrierAttacksCount pointer is null\n");
-        return NULL;
+        exit(-1);
     }
     if (myShip->item.health < CARRIER_HEALTH)
     {
@@ -157,7 +158,7 @@ static int carrierAttackStrength(ship *attacker, ship *attacked)
     if (NULL == attacker || NULL == attacked)
     {
         perror("Function carrierAttackStrength pointer is null\n");
-        return NULL;
+        exit(-1);
     }
     (void)attacker;
     (void)attacked;
@@ -174,7 +175,7 @@ ship *createCarrierShip(int index)
     if (!((index >= 0) && (index < MAX_FLEET_SIZE)))
     {
         perror("Index is out of bounds!");
-        return NULL;
+        exit(-1);
     }
 
     protossShip *s = (protossShip *)malloc(sizeof(protossShip));
@@ -182,7 +183,7 @@ ship *createCarrierShip(int index)
     if (!s)
     {
         perror("Unsuccessful memory allocation for protossShip\n");
-        return NULL;
+        exit(-1);
     }
 
     s->item.type = CARRIER;

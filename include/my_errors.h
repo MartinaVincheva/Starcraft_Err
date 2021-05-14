@@ -3,8 +3,8 @@
 
 enum MyErrors
 {
-    INDEX_OUT_OF_BOUNDS = "sdajndcn lk";
-    
+    INDEX_OUT_OF_BOUNDS = 1
+
 };
 
 #endif /* DEFINES_H_ */

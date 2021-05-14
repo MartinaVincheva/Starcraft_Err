@@ -10,7 +10,7 @@ void generateTerranFleet(BattleField *battleField, const char *terranFleetStr)
     if (NULL == battleField)
     {
         perror("Function generateTerranFleet pointer is null\n");
-        return NULL;
+        exit(-1);
     }
 
     int fleetSize = strlen(terranFleetStr);
@@ -45,7 +45,7 @@ void generateProtossFleet(BattleField *battleField, const char *protossFleetStr)
     if (NULL == battleField)
     {
         perror("Function generateProtossFleet pointer is null\n");
-        return NULL;
+        exit(-1);
     }
 
     int protosFleetSize = strlen(protossFleetStr);
@@ -80,7 +80,7 @@ static void showKilled(ship *ownShip, ship *enemyShip)
     if ((NULL == ownShip) || (NULL == enemyShip))
     {
         perror("Function pointer is null\n");
-        return NULL;
+        exit(-1);
     }
 
     printf("%s with ID: %d killed enemy airship with ID: %d\n", ownShip->getShipTypeString(), ownShip->index, enemyShip->index);
@@ -89,9 +89,10 @@ static void showKilled(ship *ownShip, ship *enemyShip)
 void startBattle(BattleField *battleField)
 {
 
-    if (NULL == battleField){
+    if (NULL == battleField)
+    {
         perror("Function startBattle pointer is null\n");
-        return NULL;
+        exit(-1);
     }
 
     while (true)
@@ -112,10 +113,11 @@ void startBattle(BattleField *battleField)
 
 void deinit(BattleField *battleField)
 {
-  
-    if (NULL == battleField){
+
+    if (NULL == battleField)
+    {
         perror("Function deinit pointer is null\n");
-        return NULL;
+        exit(-1);
     }
 
     for (size_t idx = 0; idx < vectorGetSize(&battleField->terranFleet); idx++)
@@ -132,9 +134,10 @@ void deinit(BattleField *battleField)
 
 bool processTerranTurn(BattleField *battleField)
 {
-    if (NULL == battleField){
+    if (NULL == battleField)
+    {
         perror("Function processTerranTurn pointer is null\n");
-        return NULL;
+        exit(-1);
     }
 
     ship *attacked = vectorBack(&battleField->protossFleet);
@@ -161,9 +164,10 @@ bool processTerranTurn(BattleField *battleField)
 
 bool processProtossTurn(BattleField *battleField)
 {
-    if (NULL == battleField){
+    if (NULL == battleField)
+    {
         perror("Function processProtossTurn pointer is null\n");
-        return NULL;
+        exit(-1);
     }
 
     ship *attacked = vectorBack(&battleField->terranFleet);

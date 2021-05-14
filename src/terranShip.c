@@ -3,12 +3,14 @@
 
 #include "terranShip.h"
 
+int MAX_FLEET_SIZE = 100;
+
 static void printTerranShip(ship *myShip)
 {
     if (NULL == myShip)
     {
         perror("Function printTerranShip pointer is null\n");
-        return NULL;
+        exit(-1);
     }
 
     printf("Last Terran AirShip with ID: %d has %d health left\n", myShip->index, myShip->health);
@@ -19,7 +21,7 @@ static bool terranUnderAttack(ship *attacker, ship *attacked)
     if (NULL == attacker || NULL == attacked)
     {
         perror("Function terranUnderAttack pointers null\n");
-        return NULL;
+        exit(-1);
     }
 
     attacked->health -= attacker->attackStrength(attacker, attacked);
@@ -31,7 +33,7 @@ static int vikingAttackStrength(ship *attacker, ship *attacked)
     if (NULL == attacker || NULL == attacked)
     {
         perror("Function vikingAttackStrenght pointers null\n");
-        return NULL;
+        exit(-1);
     }
 
     (void)attacker;
@@ -50,10 +52,10 @@ static char *vikingTypeToString(void)
 
 ship *createVikingShip(int index)
 {
-    if (!((index > 0) && (index < MAX_FLEET_SIZE))) 
+    if (!((index > 0) && (index < MAX_FLEET_SIZE)))
     {
         perror("createVikingShip index is out of bounds!\n");
-        return NULL;
+        exit(-1);
     }
 
     terranShip *s = (terranShip *)malloc(sizeof(terranShip));
@@ -61,7 +63,7 @@ ship *createVikingShip(int index)
     if (!s)
     {
         perror("Unsuccessful memory allocation for createVikingShip\n");
-        return NULL;
+        exit(-1);
     }
 
     s->item.type = VIKING;
@@ -79,15 +81,15 @@ static int battleShipAttackStrength(ship *attacker, ship *attacked)
     if (NULL == attacker || NULL == attacked)
     {
         perror("Function battleShipAttackStrength pointers null\n");
-        return NULL;
+        exit(-1);
     }
 
     terranShip *myShip = (terranShip *)attacker;
-    
+
     if (NULL == myShip)
     {
         perror("check battleShipAttackStrength *myShip\n");
-        return NULL;
+        exit(-1);
     }
 
     (void)attacked;
@@ -110,7 +112,7 @@ ship *createBattleShip(int index)
     if (!((index > 0) && (index < MAX_FLEET_SIZE)))
     {
         perror("createBattleShip index is out of bounds!");
-        return NULL;
+        exit(-1);
     }
 
     terranShip *s = (terranShip *)malloc(sizeof(terranShip));
@@ -118,7 +120,7 @@ ship *createBattleShip(int index)
     if (!s)
     {
         perror("Unsuccessful memory allocation for createBattleShip\n");
-        return NULL;
+        exit(-1);
     }
 
     s->item.type = BATTLE_CRUSER;
